@@ -1,0 +1,43 @@
+<html>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function getResult() {
+            const sql = document.getElementById('sql').value;
+            document.getElementById('output') .innerHTML = ""
+            axios.post('/soar', {
+                sql
+            }).then(res => {
+                document.getElementById('output') .innerHTML = res.data;
+            })
+        }
+    </script>
+    <style>
+        body {
+            margin: 20px auto;
+            width: 800px;
+            background-color: #fff;
+            font: 13px "Myriad Pro","Lucida Grande",Lucida,Verdana,sans-serif;
+        }
+        textarea {
+            margin: 0 0 10px;
+        }
+        button {
+            margin: 3px 0 10px;
+        }
+    </style>
+    <head>
+        <title>soar 脚本分析</title>
+    </head>
+    <body>
+        <div>
+            <div>SQL：</div>
+            <textarea  rows="10" cols="100" id="sql"></textarea>
+            <div><button  onclick="getResult()">评估</button></div>
+            
+        </div>
+        <div>
+            <p>结果：</p>
+            <div id="output"></div>
+        </div>
+    </body>
+</html>
